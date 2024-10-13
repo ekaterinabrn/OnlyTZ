@@ -21,24 +21,20 @@ private final By startProject = By.xpath("//p[@class=\"sc-222969c7-1 eNylzl\" an
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Увеличенное время ожидания
     }
+    //метод открытия страницы
     public void open() {
         driver.get(Url.BASE_URL);
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     }
-    // Метод прокрутки футеру
-    public MainPage scrollToFooter() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(homeFooter));
-        return this;
-    }
-    //доступность клика на ВК в футере
+
+    //доступность клика на  поле ВК в футере
     public  boolean footerVK() {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(homeVK));
         return driver.findElement(homeVK).isDisplayed();
     }
-    //начать проект  получить текст
+    //поле начать проект - в футере метод получения    текста  элемента
     public String getTextStartProject(){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+       // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15)); ожидание для мозилы
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(startProject));
         WebElement startProjectField = wait.until(ExpectedConditions.visibilityOfElementLocated(startProject));
         return startProjectField.getText();
