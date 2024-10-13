@@ -11,22 +11,20 @@ public class MainPage {
 
     private WebDriver driver;
     private WebDriverWait wait;
-    //
-    private final By homeFooter = By.cssSelector("div.hkYUoj > div");
 // селектор поля в контакте в футере
 private final By homeVK = By.xpath(".//footer//span[contains(text(), 'Vkontakte')]") ;
     //селектор поля начать проект
 private final By startProject = By.xpath("//p[@class=\"sc-222969c7-1 eNylzl\" and text()='Начать проект']") ;
-    public MainPage(WebDriver driver) {
+    //конструктор класса
+public MainPage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(5)); // Увеличенное время ожидания
     }
     //метод открытия страницы
-    public void open() {
+    public MainPage open() {
         driver.get(Url.BASE_URL);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+        return this;
     }
-
     //доступность клика на  поле ВК в футере
     public  boolean footerVK() {
         ((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView();", driver.findElement(homeVK));
